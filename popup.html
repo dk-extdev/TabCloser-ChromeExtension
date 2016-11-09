@@ -1,0 +1,74 @@
+<!-- // chrome-extension://bfbjlhinlheecjobilndbilkfpkmgiao/popup.html -->
+<html>
+<head>
+
+  <link rel="stylesheet" href="js/lib/bootstrap/css/bootstrap.css" type="text/css"/>
+  <link rel="stylesheet" href="css/popup.css" type="text/css"/>
+
+  <script type="text/javascript" src="js/lib/underscore.js"></script>
+  <script type="text/javascript" src="js/lib/jquery.min.js"></script>
+  <script type="text/javascript" src="js/lib/jquery.timeago.js"></script>
+  <script type="text/javascript" src="js/lib/jail.min.js"></script>
+  <script src="js/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="js/lib/bootstrap/js/bootstrap-tab.js"></script>
+<!--
+    Popup related functionality.
+  -->
+  <script type="text/javascript" src="popup.js"></script>
+</head>
+
+<body>
+
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#tabActive" target="#tabActive" data-toggle="tab">Tab Lock</a></li>
+  <li><a href="#tabOptions" target="#tabOptions" data-toggle="tab">Options</a></li>
+</ul>
+
+<div class="tab-content">
+
+  <div class="tab-pane" id="tabOptions">
+			<div id="status" class="alert alert-success" style="visibility:hidden;"></div>
+      <fieldset>
+        <legend>Auto-Lock</legend>
+        <label for="wl-add">tabs with urls "like":</label>
+        <input type="text" id="wl-add" style="height:30px;margin-bottom:15px;"/>
+        <button class="btn btn-success" id="addToWL" style="margin-bottom:15px;">Add</button>
+        <table class="table table-bordered table-striped" id="whitelist">
+          <thead>
+          <th>
+            Url pattern
+          </th>
+          <th>
+
+          </th>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+				<span class="help-block">
+					Example: <i>cnn</i> would match every page on cnn.com and any URL with cnn anywhere in url.
+				</span>
+      </fieldset>
+  </div>
+
+
+  <div class="tab-pane active" id="tabActive">
+    <div class="alert alert-info">Click the set button to set the closing time for each tab.</div>
+      <table id="activeTabs" class="table-condensed table-striped table table-bordered">
+        <thead>
+        <tr>
+          <th style='width:65%'>Tab</th>
+          <th style='width:10%'class="countdownColumn">Close</th>
+					<th style='width:20%'>Reset(min)</th>
+					<th style='width:10%'>Delete</th>
+        </tr>
+        </thead>
+        <!-- Class is a total kludge to keep popup=lock working -->
+        <tbody>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
