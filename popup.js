@@ -1,5 +1,6 @@
 $(document).ready(function(){
 		chrome.extension.sendMessage({getStorage: "Get"},function (response) {
+			
 			if(response.data){
 				var storage = response.data;
 				$('#activeTabs tbody').html('');
@@ -9,6 +10,7 @@ $(document).ready(function(){
 						$('#activeTabs tbody').append('<tr id="tr_'+i+'"data-tabid="'+i+'"><td style="word-break: break-word;"><span class="tabTitle">'+append_data[0]+'</span><br><span class="tabUrl">'+append_data[1]+'</span></td><td style="text-align:center;vertical-align: middle;" class="lock-reason">'+secondsToMinutes((append_data[3]-append_data[2])/1000)+'</td><td style=" vertical-align: middle;"><input id="in_'+i+'" type="number" min="1" style="margin-top:7px;width: 49px;height: 30px;float: left;margin-right: 5px;" value="'+append_data[4]+'"/><input type="button" style="margin-top:7px;padding: 4px 8px;" class="reset_btn btn btn-success" data-index="'+i+'" value="Reset"/></td><td style="vertical-align: middle;"><button type="button" style="padding: 4px;" data-index="'+i+'" class="btn btn-danger del_btn">Delete</button></td></tr>');
 					}
 				}
+				
 				$('.del_btn').click(function(){
 					if($(this).attr('data-index')){
 						console.log($(this).attr('data-index'));
@@ -21,6 +23,7 @@ $(document).ready(function(){
 						});
 					}
 				});
+				
 				$(".reset_btn").click(function(){
 					var index = $(this).attr('data-index');
 					if(index){
@@ -38,6 +41,7 @@ $(document).ready(function(){
 						});
 					}
 				});
+				
 				var handle = setInterval(function(){
 					$("[data-tabid]").each(function(){
 						var current = minutesToSeconds($(this).find(".lock-reason").text());
